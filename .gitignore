@@ -1,0 +1,1 @@
+udo journalctl -u docker.service

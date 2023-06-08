@@ -1,0 +1,86 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.top-banner {
+    background: #0080FF 0% 0% no-repeat padding-box;
+    height: 15vh;
+    border: 1px solid #707070;
+}
+
+.logo-container img {
+    height: 15vh;
+}
+
+.login-container {
+
+    height: calc(85vh - 2px);
+    background: #E2F1FF 0% 0% no-repeat padding-box;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container form {
+    width: 40vh;
+    height: 33vh;
+    background: #7ABCFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 58px;
+    border: 1px solid #0051A2;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container form input {
+    margin-bottom: 1.5vh;
+    padding: 0.5em;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #707070;
+    border-radius: 15px;
+
+    text-align: left;
+
+    color: #0051A2;
+}
+
+
+.login-container form input::placeholder {
+    color: #0051A2;
+}
+
+.login-container form button {
+
+    background: #0051A2 0% 0% no-repeat padding-box;
+    border-radius: 12px;
+    padding: 0.3em 2em;
+    color: white;
+    text-align: center;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+}
+
+.input-container .input-icon img {
+    width: 3.5em;
+    height: 3.5em;
+    margin-left: -2em;
+}
+
+@media only screen and (max-device-width: 420px)
+{
+    * {
+        font-size: 36px;
+    }
+    .login-container form button {
+        height: 2.5em;
+    }
+}

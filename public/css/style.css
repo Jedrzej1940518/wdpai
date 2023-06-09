@@ -4,41 +4,45 @@ body {
 }
 
 .top-banner {
+    display: flex;
+    flex-direction: row;
     background: #0080FF 0% 0% no-repeat padding-box;
     height: 15vh;
     border: 1px solid #707070;
+    align-items: flex-end;
 }
 
 .logo-container img {
     height: 15vh;
 }
 
-.login-container {
-
-    height: calc(85vh - 2px);
+.main-screen {
+    height: calc(80vh - 2px);
     background: #E2F1FF 0% 0% no-repeat padding-box;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.login-container form {
-    width: 40vh;
-    height: 33vh;
-    background: #7ABCFF 0% 0% no-repeat padding-box;
-    box-shadow: 0px 3px 6px #00000029;
-    border-radius: 58px;
-    border: 1px solid #0051A2;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.login-container form input {
+.login-container .main-screen {
+    height: calc(85vh - 2px);
+}
+
+.main-screen form {
+    width: 40vh;
+    height: 33vh;
+    background: #7ABCFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 58px;
+    border: 1px solid #0051A2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-screen form input {
     margin-bottom: 1.5vh;
     padding: 0.5em;
     background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -51,11 +55,11 @@ body {
 }
 
 
-.login-container form input::placeholder {
+.main-screen form input::placeholder {
     color: #0051A2;
 }
 
-.login-container form button {
+.main-screen form button {
 
     background: #0051A2 0% 0% no-repeat padding-box;
     border-radius: 12px;
@@ -75,12 +79,80 @@ body {
     margin-left: -2em;
 }
 
-@media only screen and (max-device-width: 420px)
+
+.versus-container {
+    height: 100vh;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    height: 5vh;
+    align-items: flex-end;
+    justify-content: flex-end;
+    background: #E2F1FF 0% 0% no-repeat padding-box;
+}
+
+.button {
+    background: #0051A2 0% 0% no-repeat padding-box;
+    border-radius: 12px;
+    padding: 0.3em 2em;
+    color: white;
+    text-align: center;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+.matches-container {
+    height: 50vh;
+}
+
+.player-container {
+    height: 10vh;
+    display: flex;
+    align-items: center;
+}
+
+.player {
+    background: #AFD5FB;
+    border: 1px solid #7ABCFF;
+    opacity: 1;
+    width: 10em;
+    height: 4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.player-text {
+    margin: auto 10px;
+    text-align: center;
+    letter-spacing: 0px;
+    color: #0051A2;
+    opacity: 1;
+}
+
+.player-img
 {
+    border-radius: 23px;
+    opacity: 1;
+    overflow: hidden;
+}
+.player-img img
+{
+    margin-left: 1.5em;
+    border-radius: 23px;
+    width: 4em;
+    height: 3.3em;
+}
+
+@media only screen and (max-device-width: 420px) {
     * {
-        font-size: 36px;
+        font-size: 40px;
     }
-    .login-container form button {
+
+    .main-screen form button {
         height: 2.5em;
     }
 }

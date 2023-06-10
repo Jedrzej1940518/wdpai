@@ -125,7 +125,7 @@ body {
 }
 .timer-container{
     height: 100%;
-    width: 10%;
+    width: 10em;
     background: #DFE4E9 0% 0% no-repeat padding-box;
     border: 1px solid #707070;
     display: flex;
@@ -134,10 +134,13 @@ body {
     justify-content: center;
     align-items: center;
 }
+.timer-container .versus-text {
+    margin-bottom: 0.3em; 
+}
 .left-stats-container
 {
     height: 100%;
-    width: 45%;
+    width: 35%;
     background: #AFD5FB 0% 0% no-repeat padding-box;
     border: 1px solid #7ABCFF;
 
@@ -146,43 +149,49 @@ body {
     align-items: center;
     text-align: left;
     justify-content: start;
-    
 }
 
 .left-stats-container img
 {
     border-radius: 50px;
-    width: 3.3em;
-    height: 3.3em;
-    margin-left: 1.5em;
-    margin-right: 1.5em;
+    width: 3em;
+    height: 3em;
+    margin-left: 1em;
+    margin-right: 1em;
 }
 
 .right-stats-container img
 {
     border-radius: 50px;
-    width: 3.3em;
-    height: 3.3em;
-    margin-left: 1.5em;
-    margin-right: 1.5em;
+    width: 3em;
+    height: 3em;
+    margin-left: 1em;
+    margin-right: 1em;
 }
 .stats-container{
-    text-align: center;
-    margin-left: auto;
-    margin-right: 3em;
+    height: 100%;
+    text-align: center;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.stats-container .versus-text {
+    margin-bottom: 0.3em; 
 }
 .right-stats-container
 {
     height: 100%;
-    width: 45%;
+    width: 35%;
     background: #ECBDBF 0% 0% no-repeat padding-box;
     border: 1px solid #7ABCFF;
-
+    
     display: flex;
     flex-direction: row;
     align-items: center;
     text-align: left;
-    justify-content: start;
+    justify-content: flex-end;
 }
 .player-container {
     height: 10vh;
@@ -216,12 +225,35 @@ body {
     height: 3.3em;
 }
 
-@media only screen and (max-device-width: 420px) {
+@media only screen and (max-device-width: 600px) {
     * {
         font-size: 40px;
     }
 
     .main-screen form button {
         height: 2.5em;
+    }
+    .matches-container{
+        width: 95%;
+        margin-right: 0;
+    }
+    .match-container{
+        width: 100%;
+    }
+    .timer-container{
+        width: 25%;
+    }
+    .left-stats-container{
+        width: 50%;
+    }
+    .right-stats-container{
+        width: 50%;
+    }
+    .stats-container{
+        width: 30%;
+        margin: 0;
+    }
+    .account-container {
+        display: none;
     }
 }

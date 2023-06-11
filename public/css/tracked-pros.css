@@ -1,0 +1,33 @@
+.main-screen{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.pros-container
+{
+    margin-top: 2em;
+    margin-right: 10em;
+}
+.player
+{
+    width: 20em;
+    justify-content: left;
+}
+.player .versus-text
+{
+    margin-left: 2em;
+}
+.player .player-img
+{
+    margin-left: 7em;
+    margin-right: 1em;
+}
+.player .fa
+{
+    margin-right: 2em;
+}
+.search-container
+{
+    margin-top: 2em;
+}

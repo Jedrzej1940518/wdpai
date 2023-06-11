@@ -22,12 +22,16 @@
                 <div class="player-container">
                     <div class="player">
                         <div class="versus-text"> Caps </div>
+                        <div class ="player-img">
                         <img src="public/img/players/caps.webp">
+                        </div>
                     </div>
                     <div class="versus-text"> Versus </div>
                     <div class="player">
                         <div class="versus-text"> Faker </div>
+                        <div class ="player-img">
                         <img src="public/img/players/faker.webp">
+                        </div>
                     </div>
                 </div>
                 <div class="matches-container">

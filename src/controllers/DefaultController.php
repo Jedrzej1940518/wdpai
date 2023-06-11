@@ -10,4 +10,10 @@ class DefaultController extends AppController {
     public function versus() {
         $this->render('versus');
     }
+    public function register() {
+        $this->render('register');
+    }
+    public function trackedPros() {
+        $this->render('tracked-pros');
+    }
 }

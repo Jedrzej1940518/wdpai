@@ -1,4 +1,3 @@
-
 * {
     font: normal normal normal 20px/27px Segoe UI;
 }
@@ -8,6 +7,11 @@ body {
     padding: 0;
 }
 
+button {
+    all: unset;
+    cursor: pointer;
+}
+
 .top-banner {
     display: flex;
     flex-direction: row;
@@ -15,10 +19,6 @@ body {
     height: 15vh;
     border: 1px solid #707070;
     align-items: flex-end;
-}
-
-.logo-container img {
-    height: 15vh;
 }
 
 .main-screen {
@@ -53,9 +53,7 @@ body {
     background: #FFFFFF 0% 0% no-repeat padding-box;
     border: 1px solid #707070;
     border-radius: 15px;
-
     text-align: left;
-
     color: #0051A2;
 }
 
@@ -64,30 +62,15 @@ body {
     color: #0051A2;
 }
 
-.main-screen form button {
-
-    background: #0051A2 0% 0% no-repeat padding-box;
-    border-radius: 12px;
-    padding: 0.3em 2em;
-    color: white;
-    text-align: center;
-}
-
 .input-container {
     display: flex;
     align-items: center;
 }
 
-.input-container .input-icon img {
-    width: 3.5em;
-    height: 3.5em;
-    margin-left: -2em;
+.input-container img {
+    margin-left: -1.5em;
 }
 
-
-.versus-container {
-    height: 100vh;
-}
 
 .button-container {
     display: flex;
@@ -107,153 +90,21 @@ body {
     margin-right: 10px;
     margin-top: 10px;
     text-decoration: none;
-}
-
-.matches-container {
-    margin-top: 8vh;
-    height: 20em;
-    width: 65%;
-    margin-right: 5%;
-}
-
-.match-container
-{
-    height: 4em;
-    width: 100%;
+    width: auto;
+    height: auto;
     display: flex;
-    align-items: center;
-}
-.timer-container{
-    height: 100%;
-    width: 10em;
-    background: #DFE4E9 0% 0% no-repeat padding-box;
-    border: 1px solid #707070;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-}
-.timer-container .versus-text {
-    margin-bottom: 0.3em; 
-}
-.left-stats-container
-{
-    height: 100%;
-    width: 35%;
-    background: #AFD5FB 0% 0% no-repeat padding-box;
-    border: 1px solid #7ABCFF;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    text-align: left;
-    justify-content: start;
-}
-
-.left-stats-container img
-{
-    border-radius: 50px;
-    width: 3em;
-    height: 3em;
-    margin-left: 1em;
-    margin-right: 1em;
-}
-
-.right-stats-container img
-{
-    border-radius: 50px;
-    width: 3em;
-    height: 3em;
-    margin-left: 1em;
-    margin-right: 1em;
-}
-.stats-container{
-    height: 100%;
-    text-align: center;  
-    display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.stats-container .versus-text {
-    margin-bottom: 0.3em; 
-}
-.right-stats-container
-{
-    height: 100%;
-    width: 35%;
-    background: #ECBDBF 0% 0% no-repeat padding-box;
-    border: 1px solid #7ABCFF;
-    
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    text-align: left;
-    justify-content: flex-end;
-}
-.player-container {
-    height: 10vh;
-    display: flex;
-    align-items: center;
-}
-
-.player {
-    background: #AFD5FB;
-    border: 1px solid #7ABCFF;
-    opacity: 1;
-    width: 10em;
-    height: 4em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.versus-text {
-    margin: 0 10px;
-    letter-spacing: 0px;
-    color: #0051A2;
-    opacity: 1;
-}
-
-.player img
-{
-    margin-left: 1.5em;
-    border-radius: 23px;
-    width: 4em;
-    height: 3.3em;
+.login-button {
+    box-sizing: border-box;
+    width: 8em;
+    height: 2em;
 }
 
 @media only screen and (max-device-width: 600px) {
     * {
         font-size: 40px;
-    }
-
-    .main-screen form button {
-        height: 2.5em;
-    }
-    .matches-container{
-        width: 95%;
-        margin-right: 0;
-    }
-    .match-container{
-        width: 100%;
-    }
-    .timer-container{
-        width: 25%;
-    }
-    .left-stats-container{
-        width: 50%;
-    }
-    .right-stats-container{
-        width: 50%;
-    }
-    .stats-container{
-        width: 30%;
-        margin: 0;
-    }
-    .account-container {
-        display: none;
     }
 }

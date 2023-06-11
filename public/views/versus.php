@@ -2,7 +2,7 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
-    <script src="https://kit.fontawesome.com/2e055273be.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="public/css/versus.css">
     <title>VERSUS</title>
 </head>
 
@@ -14,8 +14,8 @@
             </div>
         </div>
         <div class="button-container">
-            <a href="#" class="button">Sign in</a>
-            <a href="#" class="button">Tracked pros</a>
+            <a href="login" class="button">Sign in</a>
+            <a href="trackedPros" class="button">Tracked pros</a>
         </div>
         <main>
             <div class="main-screen">

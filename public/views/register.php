@@ -2,7 +2,7 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
-    <title>LOGIN</title>
+    <title>REGISTER</title>
 </head>
 
 <body>
@@ -16,9 +16,11 @@
             <form class="login" action="login" method="POST">
                 <?php
                 if (isset($messages)) {
+                    echo "\n";
                     foreach ($messages as $message) {
                         echo $message;
                     }
+                    echo "\n";
                 }
                 ?>
                 <div class="input-container">
@@ -29,7 +31,10 @@
                     <img src="public/img/icons/lock.svg" alt="Lock Icon">
                     <input type="password" id="password" name="password" placeholder="Password">
                 </div>
-                <button type="submit" class="button login-button">Sign in</button>
+                <div class="input-container">
+                <img src="public/img/icons/lock.svg" alt="Lock Icon">
+                    <input type="password" id="password" name="password" placeholder="Repeat Password">
+                </div>
                 <a href="register" class="button login-button">Register </a>
             </form>
         </div>

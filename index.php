@@ -7,6 +7,8 @@ $path = parse_url($path, PHP_URL_PATH);
 
 Routing::get('', 'DefaultController');
 Routing::get('versus', 'DefaultController');
+Routing::get('register', 'DefaultController');
+Routing::get('trackedPros', 'DefaultController');
 Routing::post('login', 'SecurityController');
 
 Routing::run($path);

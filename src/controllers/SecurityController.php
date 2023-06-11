@@ -11,19 +11,19 @@ class SecurityController extends AppController
             return $this->render('login');
         }
 
-        $user = new User('jsnow@pk.edu.pl', 'admin', 'John', 'Snow');
+        // $user = new User('jsnow@pk.edu.pl', 'admin', 'John', 'Snow');
         
-        $email = $_POST["email"];
-        $password = $_POST["password"];
+        // $email = $_POST["email"];
+        // $password = $_POST["passrrword"];
         
-        if($user->getEmail() !== $email)
-        {
-            return $this->render('login', ['messages' => ['User with this email doesn\'t exist!']]);
-        }
-        if($user->getPassword() !== $password)
-        {
-            return $this->render('login', ['messages' => ['Wrong password!']]);
-        }
+        // if($user->getEmail() !== $email)
+        // {
+        //     return $this->render('login', ['messages' => ['User with this email doesn\'t exist!']]);
+        // }
+        // if($user->getPassword() !== $password)
+        // {
+        //     return $this->render('login', ['messages' => ['Wrong password!']]);
+        // }
 
         //return $this->render('versus');
 

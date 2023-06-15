@@ -30,15 +30,15 @@ button {
     align-items: center;
 }
 
-.logo-container img {
-    height: 15vh;
-}
-
-.login-container .main-screen {
+.login-screen
+{
     height: calc(85vh - 2px);
 }
 
-.main-screen form {
+.logo-container img {
+    height: 15vh;
+}
+.account-form {
     width: 40vh;
     height: 33vh;
     background: #7ABCFF 0% 0% no-repeat padding-box;
@@ -51,7 +51,8 @@ button {
     align-items: center;
 }
 
-.main-screen form input {
+.input-form
+{
     margin-bottom: 1.5vh;
     padding: 0.5em;
     background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -60,7 +61,6 @@ button {
     text-align: left;
     color: #0051A2;
 }
-
 
 .main-screen form input::placeholder {
     color: #0051A2;

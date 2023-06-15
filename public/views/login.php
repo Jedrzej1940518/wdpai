@@ -6,14 +6,13 @@
 </head>
 
 <body>
-    <div class="login-container">
         <div class="top-banner">
             <div class="logo-container">
                 <img src="public/img/logo.svg">
             </div>
         </div>
-        <div class="main-screen">
-            <form class="login" action="login" method="POST">
+        <div class="main-screen login-screen">
+            <form class="account-form" action="login" method="POST">
                 <?php
                 if (isset($messages)) {
                     foreach ($messages as $message) {
@@ -23,15 +22,14 @@
                 ?>
                 <div class="input-container">
                     <img src="public/img/icons/person.svg" alt="Person Icon">
-                    <input type="text" id="email" name="email" placeholder="Email">
+                    <input type="text" name="email" class="input-form" placeholder="Email">
                 </div>
                 <div class="input-container">
                     <img src="public/img/icons/lock.svg" alt="Lock Icon">
-                    <input type="password" id="password" name="password" placeholder="Password">
+                    <input type="password" name="password" class="input-form" placeholder="Password">
                 </div>
                 <button type="submit" class="button login-button">Sign in</button>
                 <a href="register" class="button login-button">Register </a>
             </form>
         </div>
-    </div>
 </body>

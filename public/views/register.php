@@ -34,9 +34,9 @@
             </div>
             <div class="input-container">
                 <img src="public/img/icons/lock.svg" alt="Lock Icon">
-                <input type="password" name="password" class="input-form" placeholder="Repeat Password">
+                <input type="password" name="password-repeated" class="input-form" placeholder="Repeat Password">
             </div>
-            <a href="register" class="button login-button">Register </a>
+            <button type="submit" class="button login-button">Register</button>
         </form>
     </div>
 

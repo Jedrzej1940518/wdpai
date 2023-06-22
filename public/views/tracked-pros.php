@@ -62,18 +62,17 @@
                 <i class="fa-solid fa-caret-down fa-2x mr-2" style="color: #0051A2;"></i>
             </div>
         </div>
-        <div class="search-container">
-            <form class="add-pro" action="add-pro" method="POST">
-            <a href="#" class="button add-pro-button">Add pro </a>
+        <form class="add-pro" action="addPro" method="POST">
             <input type="search-pro" name="search-pro" class="input-form" placeholder="Search pro">
-                <?php
-                if (isset($messages)) {
-                    foreach ($messages as $message) {
-                        echo $message;
-                    }
+            <a href="#" class="button add-pro-button">Add pro</a>
+            <?php
+            if (isset($messages)) {
+                foreach ($messages as $message) {
+                    echo $message;
                 }
-                ?>
-            </form>
-        </div>
+            }
+            ?>
+        </form>
+    </div>
     </div>
 </body>

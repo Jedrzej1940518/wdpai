@@ -9,6 +9,8 @@ Routing::get('', 'DefaultController');
 Routing::get('versus', 'DefaultController');
 Routing::get('register', 'DefaultController');
 Routing::get('trackedPros', 'DefaultController');
+Routing::post('addPro', 'DefaultController');
 Routing::post('login', 'SecurityController');
+Routing::post('register', 'SecurityController');
 
 Routing::run($path);

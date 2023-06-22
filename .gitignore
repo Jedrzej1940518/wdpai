@@ -1,1 +1,3 @@
 udo journalctl -u docker.service
+.env
+.idea\

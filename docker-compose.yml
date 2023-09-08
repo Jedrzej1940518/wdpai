@@ -23,7 +23,9 @@ services:
             - db
 
     db:
-        image: postgres:latest
+        build:
+            context: ./   # Adjust the context to include the parent directory
+            dockerfile: ./docker/db/Dockerfile
         environment:
             POSTGRES_USER: ${POSTGRES_USER}
             POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}

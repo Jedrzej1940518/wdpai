@@ -18,15 +18,19 @@ class SecurityController extends AppController
         $email = $_POST["email"];
         
         $user_repository = new UserRepository();
-        $user_data = $user_repository->findByEmail($email);
+        $user = $user_repository->findByEmail($email);
         
         $password = md5($_POST["password"]);
-        $user = new User($user_data->email, $user_data->password);
 
         if($user->getPassword() !== $password)
         {
             return $this->render('login', ['messages' => ['Wrong password!']]);
         }
+        //setting cookies
+        $user_id = $user->getId();
+        $expiration_time = time() + 3600; 
+
+        setcookie("user_id", $user_id, $expiration_time, "/");
 
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/versus");
@@ -62,10 +66,10 @@ class SecurityController extends AppController
 
         }
         
-        $user = new User($email, md5($password));
+        $user = new User(0, $email, md5($password));
         $user_repository->insert($user);
         $app_user = $user_repository->findByEmail($email);
-        echo json_encode($app_user);
+        echo json_encode($app_user);    //debug
     
         return $this->render('login', ['messages' => ['Registration complete. You can now log in']]);
     }

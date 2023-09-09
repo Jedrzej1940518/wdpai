@@ -14,8 +14,25 @@
         </div>
     </div>
     <div class="button-container">
-        <a href="login" class="button">Sign in</a>
-        <a href="trackedPros" class="button">Tracked pros</a>
+    <?php
+           require_once __DIR__.'/../../src/repository/UserRepository.php';
+
+            if (isset($_COOKIE['user_id'])) {
+                // Cookie is set, user is authenticated
+                $id = $_COOKIE['user_id'];
+                $user_repository = new UserRepository();
+                $user = $user_repository->findById($id);
+        
+                echo '<div class="versus-text" style="text-align: center; position: relative; top: -5px;">Logged in as ' . strtoupper($user->getEmail()[0]) . '</div>';
+                echo '<a href="trackedPros" class="button" onclick="logout()">Sign out</a>';
+                echo '<a href="versus" class="button">Versus</a>';
+            } else {
+                // Cookie is not set, user is not authenticated
+                echo '<a href="login" class="button">Sign in</a>';
+                echo '<a href="versus" class="button">Versus</a>';
+            }
+            ?> 
+
     </div>
     <div class="main-screen">
         <div class="pros-container">
@@ -76,3 +93,9 @@
     </div>
     </div>
 </body>
+<script>
+        function logout() {
+            // Set the "user_id" cookie to expire immediately (time in the past)
+            document.cookie = "user_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        }
+</script>

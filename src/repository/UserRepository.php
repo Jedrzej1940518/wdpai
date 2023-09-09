@@ -24,13 +24,23 @@ class UserRepository
         return $this->database->execute($query, $params);
     }
 
-    public function findByEmail($email)
+    public function findByEmail($email) : User
     {
         // Assuming you have a "app_user" table with columns "email" and "password"
         $query = "SELECT * FROM app_user WHERE email = ?";
         $params = [$email];
         
-        return $this->database->querySingle($query, $params);
+        return $this->createUser($this->database->querySingle($query, $params));
+    }
+
+    public function findById($id) : User
+    {
+        // Assuming you have a "app_user" table with columns "email" and "password"
+        $query = "SELECT * FROM app_user WHERE id = ?";
+        $params = [$id];
+        $user_data = $this->database->querySingle($query, $params);
+        
+        return $this->createUser($this->database->querySingle($query, $params));
     }
 
     public function findAll()
@@ -39,5 +49,9 @@ class UserRepository
         $query = "SELECT * FROM app_user";
         
         return $this->database->query($query);
+    }
+    private function createUser($sdObject) : User
+    {
+        return new User($sdObject->id, $sdObject->email, $sdObject->password);
     }
 }

@@ -17,10 +17,19 @@ CREATE TABLE pro (
 CREATE TABLE account (
     id serial PRIMARY KEY,
     pro_id INT REFERENCES pro(id),
-    summoner_name VARCHAR(255) NOT NULL,
+    summoner_name VARCHAR(255) NOT NULL,    
     server VARCHAR(255) NOT NULL,
     lp INT
 );
 
--- Create an index on the "email" column for faster lookups (optional)
 CREATE INDEX idx_user_email ON app_user (email);
+
+INSERT INTO pro (name) VALUES
+    ('Faker'),
+    ('Caps'),
+    ('Baus');
+
+INSERT INTO account (pro_id, summoner_name, server, lp) VALUES
+    ((SELECT id FROM pro WHERE name = 'Faker'), 'SKT Faker', 'KR', 1000),
+    ((SELECT id FROM pro WHERE name = 'Caps'), 'G2 Caps', 'KR', 500),
+    ((SELECT id FROM pro WHERE name = 'Baus'), 'thebausffs', 'KR', 200);

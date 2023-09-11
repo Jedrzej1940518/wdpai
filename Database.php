@@ -4,9 +4,9 @@ require_once "config.php";
 
 class Database
 {
-    private $host = HOST; // Replace with your database host
-    private $dbname = DATABASE; // Replace with your database name
-    private $username = USERNAME; // Replace with your database username
+    private $host = HOST; 
+    private $dbname = DATABASE; 
+    private $username = USERNAME; 
     private $password = PASSWORD;
     private $port = PORT;
 
@@ -27,7 +27,7 @@ class Database
         try {
             $stmt = $this->connection->prepare($query);
             $stmt->execute($params);
-            return true; // Return true for success
+            return true; 
         } catch (PDOException $e) {
             die("Database query error: " . $e->getMessage());
         }

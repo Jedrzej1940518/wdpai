@@ -3,6 +3,7 @@
 require_once 'AppController.php';
 require_once __DIR__.'/../models/User.php';
 require_once __DIR__.'/../repository/UserRepository.php';
+require_once __DIR__.'/../repository/ProRepository.php';
 require_once __DIR__.'/../../Database.php';
 
 class SecurityController extends AppController
@@ -19,7 +20,6 @@ class SecurityController extends AppController
         
         $user_repository = new UserRepository();
         $user = $user_repository->findByEmail($email);
-        
         $password = md5($_POST["password"]);
 
         if($user->getPassword() !== $password)
@@ -66,23 +66,35 @@ class SecurityController extends AppController
 
         }
         
-        $user = new User(0, $email, md5($password));
+        $user = new User(0, $email, md5($password), []);
+
         $user_repository->insert($user);
-        $app_user = $user_repository->findByEmail($email);
-        echo json_encode($app_user);    //debug
-    
+        $added_user = $user_repository->findByEmail($email);
+        $this->addDefaultPros($added_user->getId());
+
         return $this->render('login', ['messages' => ['Registration complete. You can now log in']]);
+    }
+    private function addDefaultPros($user_id)
+    {
+        $pro_repo = new ProRepository();
+        $caps = $pro_repo->findProByName("Caps");
+        $faker = $pro_repo->findProByName("Faker");
+        $baus = $pro_repo->findProByName("Baus");
+        $user_repo = new UserRepository();
+
+        $user_repo->addProToUser($user_id, $caps->getId());
+        $user_repo->addProToUser($user_id, $faker->getId());
+        $user_repo->addProToUser($user_id, $baus->getId());
     }
     private function isEmailValid($email) {
         return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
     
     private function isEmailUsed($email, $user_repository) {
-        $app_user = $user_repository->findByEmail($email);
-        return ($app_user !== false);
+        return $user_repository->emailAlreadyUsed($email);
     }
     
     private function isPasswordValid($password) {
-        return (strlen($password) >= 2);
+        return (strlen($password) >= 8);
     }
 }

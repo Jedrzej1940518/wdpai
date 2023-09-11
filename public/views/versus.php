@@ -18,7 +18,7 @@
            require_once __DIR__.'/../../src/repository/UserRepository.php';
 
             if (isset($_COOKIE['user_id'])) {
-                // Cookie is set, user is authenticated
+                
                 $id = $_COOKIE['user_id'];
                 $user_repository = new UserRepository();
                 $user = $user_repository->findById($id);
@@ -27,7 +27,7 @@
                 echo '<a href="versus" class="button" onclick="logout()">Sign out</a>';
                 echo '<a href="trackedPros" class="button">Tracked pros</a>';
             } else {
-                // Cookie is not set, user is not authenticated
+                
                 echo '<a href="login" class="button">Sign in</a>';
                 echo '<a href="trackedPros" class="button">Tracked pros</a>';
             }
@@ -165,7 +165,7 @@
     </main>
     <script>
         function logout() {
-            // Set the "user_id" cookie to expire immediately (time in the past)
+            
             document.cookie = "user_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         }
     </script>

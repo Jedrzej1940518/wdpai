@@ -2,6 +2,7 @@
 
 require_once 'src/controllers/DefaultController.php';
 require_once 'src/controllers/SecurityController.php';
+require_once 'src/controllers/ApiController.php';
 
 class Routing {
 
@@ -14,20 +15,29 @@ class Routing {
         self::$routes[$url] = $controller;
     }
     public static function run($url) {
-        $action = explode("/", $url)[0];
-
-        if(!array_key_exists($action, self::$routes)){
+    
+        if(!array_key_exists($url, self::$routes)){
 
             foreach (self::$routes as $key => $value) {
                 echo $key . ": " . $value . "<br>";
               }
-            die("{$action} Wrong url!");
+            die("{$url} Wrong url!");
         }
 
-        $controller = self::$routes[$action];
+        $controller = self::$routes[$url];
         $object = new $controller;
-        $action = $action ?: 'index';
+        $url = $url ?: 'index';
 
+        $base = explode("/", $url)[0];
+
+        if($base == 'api')
+        {
+            $action = explode("/", $url)[1];
+        }
+        else
+        {
+            $action = $url;
+        }
         $object->$action();
     }
 }

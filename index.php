@@ -13,4 +13,7 @@ Routing::post('addPro', 'DefaultController');
 Routing::post('login', 'SecurityController');
 Routing::post('register', 'SecurityController');
 
+//api
+Routing::get('api/pros', 'ApiController');
+
 Routing::run($path);

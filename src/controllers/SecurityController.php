@@ -77,14 +77,13 @@ class SecurityController extends AppController
     private function addDefaultPros($user_id)
     {
         $pro_repo = new ProRepository();
-        $caps = $pro_repo->findProByName("Caps");
-        $faker = $pro_repo->findProByName("Faker");
-        $baus = $pro_repo->findProByName("Baus");
-        $user_repo = new UserRepository();
+        $pros = $pro_repo->getDefaultPros();
 
-        $user_repo->addProToUser($user_id, $caps->getId());
-        $user_repo->addProToUser($user_id, $faker->getId());
-        $user_repo->addProToUser($user_id, $baus->getId());
+        $user_repo = new UserRepository();
+        foreach($pros as $pro)
+        {
+            $user_repo->addProToUser($user_id, $pro->getId());
+        }
     }
     private function isEmailValid($email) {
         return filter_var($email, FILTER_VALIDATE_EMAIL);

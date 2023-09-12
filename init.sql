@@ -11,7 +11,8 @@ CREATE TABLE app_user (
 
 CREATE TABLE pro (
     id serial PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
+    name VARCHAR(255) NOT NULL,
+    img_exists BOOLEAN
 );
 
 CREATE TABLE account (
@@ -24,10 +25,10 @@ CREATE TABLE account (
 
 CREATE INDEX idx_user_email ON app_user (email);
 
-INSERT INTO pro (name) VALUES
-    ('Faker'),
-    ('Caps'),
-    ('Baus');
+INSERT INTO pro (name, img_exists) VALUES
+    ('Faker', true),
+    ('Caps', true),
+    ('Baus', false);
 
 INSERT INTO account (pro_id, summoner_name, server, lp) VALUES
     ((SELECT id FROM pro WHERE name = 'Faker'), 'SKT Faker', 'KR', 1000),

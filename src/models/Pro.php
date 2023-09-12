@@ -5,11 +5,13 @@ class Pro implements JsonSerializable
 {
     public int $id;
     public string $name;
+    public bool $img_exists;
 
-    public function __construct(int $id, string $name)
+    public function __construct(int $id, string $name, bool $img_exists)
     {
         $this->id = $id;
         $this->name = $name;
+        $this->img_exists = $img_exists;
     }
 
     public function getName(): string
@@ -32,11 +34,22 @@ class Pro implements JsonSerializable
         $this->id = $id;
     }
 
+    public function getImgExists(): bool
+    {
+        return $this->img_exists;
+    }
+
+    public function setImgExists(bool $img_exists)
+    {
+        $this->img_exists = $img_exists;
+    }
+
     public function jsonSerialize()
     {
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'img_exists' => $this->img_exists
         ];
     }
 }

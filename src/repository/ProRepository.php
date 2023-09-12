@@ -13,10 +13,10 @@ class ProRepository
         $this->database = new Database();
     }
 
-    public function addPro($name)
+    public function addPro($name, $img_exists)
     {
-        $query = "INSERT INTO pro (name) VALUES (?)";
-        $params = [$name];
+        $query = "INSERT INTO pro (name, img_exists) VALUES (?, ?)";
+        $params = [$name, $img_exists];
 
         return $this->database->execute($query, $params);
     }
@@ -57,9 +57,21 @@ class ProRepository
 
         return createAccount($this->database->querySingle($query, $params, 'Account'));
     }
+    public function getDefaultPros() : array
+    {
+        $pro_names = ["Caps", "Faker", "Baus"];
+        $pros = []; 
+
+        foreach ($pro_names as $pro_name)
+        {
+            $pros[$pro_name] = $this->findProByName($pro_name);
+        }
+        return $pros;
+
+    }
     private function createPro($dbObject): Pro
     {
-        return new Pro($dbObject->id, $dbObject->name);
+        return new Pro($dbObject->id, $dbObject->name, $dbObject->img_exists);
     }
     
     private function createAccount($dbObject): Account

@@ -50,10 +50,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="dropdown">
-                    <input type="text" id="pro-search" placeholder="Search pro players...">
-                    <div class="dropdown-content">
-                        <!-- Pro player options will be added here dynamically -->
+                <div class="dropdown-container">
+                    <div class="dropdown-box">
+                        <input type="text" id="pro-search-first" placeholder="Search pro players...">
+                        <div class="dropdown-content" id="first-dropdown">
+                            <!-- Pro player options will be added here dynamically -->
+                        </div>
+                    </div>
+                    <div class="dropdown-box">
+                        <input type="text" id="pro-search-second" placeholder="Search pro players...">
+                        <div class="dropdown-content" id="second-dropdown">
+                            <!-- Pro player options will be added here dynamically -->
+                        </div>
                     </div>
                 </div>
                 <div class="matches-container">
@@ -171,84 +179,98 @@
     </main>
     <script>
 
-        const searchInput = document.getElementById("pro-search");
-        const dropdownContent = document.querySelector(".dropdown-content");
-        const proPlayers = ["Caps", "Faker", "Baus"];   //fix this
+        const searchInputFirst = document.getElementById("pro-search-first");
+        const dropdownContentFirst = document.getElementById("first-dropdown");
+
+        const searchInputSecond = document.getElementById("pro-search-second");
+        const dropdownContentSecond = document.getElementById("second-dropdown");
 
         function logout() {
             
             document.cookie = "user_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         }
-        function getUserPros()
-        {
-            fetch("http://localhost:8080/api/pros")
-                .then(response => response.text())
-                .then(data => {
-                    updateContent(data);
-                })
-                .catch(error => {
-                    console.error("Fetch error: " + error);
-                });
-        }
 
-        function updateFirstPlayer(playerName) {
-            const firstPlayerElement = document.getElementById("first-player");
-            const versusTextElement = firstPlayerElement.querySelector(".versus-text");
+        function updatePlayer(playerTag, playerName) {
+            const playerElement = document.getElementById(playerTag);
+            const versusTextElement = playerElement.querySelector(".versus-text");
             versusTextElement.textContent = playerName;
-            const imgElement = document.querySelector("#first-player .player-img img");
-            const newFile = "public/img/players/" + playerName.toLowerCase() + ".webp";
+            const imgElement = playerElement.querySelector(".player-img img");
+            fetch('http://localhost:8080/api/pros')
+            .then(response => response.json())
+            .then(data => {
+                const imgExists = data.pros[playerName].img_exists;
+                console.log(imgExists);
             
-            if(fileExists(newFile))
-            {
-                imgElement.src = newFile;
-            }
-            else
-            {
-                imgElement.src = "public/img/players/unknown_pro.webp";
-            }
+            // Update the image source if it exists
+                if (imgExists) {
+                    const newFile = "public/img/players/" + playerName.toLowerCase() + ".webp";
+                    imgElement.src = newFile;
+                }
+                else
+                {
+                    imgElement.src = "public/img/players/unknown_pro.webp";
+                }
+                })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
         }
 
-        function filterProPlayers(input) {
-            const filteredPlayers = proPlayers.filter((player) =>
-                player.toLowerCase().includes(input.toLowerCase())
-            );
-            return filteredPlayers;
-        }
+        function updateDropdown(input, dropdownContent, searchInput) {
 
-        function updateDropdown(input) {
-            const filteredPlayers = filterProPlayers(input);
+            fetch('http://localhost:8080/api/pros')
+            .then(response => response.json())
+            .then(data => {
+                const proPlayers = Object.keys(data.pros);
+                const filteredPlayers = proPlayers.filter((player) =>
+                player.toLowerCase().includes(input.toLowerCase()));
+                dropdownContent.innerHTML = "";
 
-            dropdownContent.innerHTML = "";
+                filteredPlayers.forEach((player) => {
+                    const option = document.createElement("div");
+                    option.textContent = player;
+                    option.classList.add("dropdown-option");
 
-            filteredPlayers.forEach((player) => {
-                const option = document.createElement("div");
-                option.textContent = player;
-                option.classList.add("dropdown-option");
+                    option.addEventListener("click", () => {
+                    searchInput.value = player;
+                    dropdownContent.style.display = "none";
+                    });
 
-                option.addEventListener("click", () => {
-                searchInput.value = player;
-                dropdownContent.style.display = "none";
+                    dropdownContent.appendChild(option);
                 });
 
-                dropdownContent.appendChild(option);
+                dropdownContent.style.display = filteredPlayers.length ? "block" : "none";
+            }
+            )
+            .catch(error => {
+                console.error('Error fetching data:', error);
             });
-
-            dropdownContent.style.display = filteredPlayers.length ? "block" : "none";
         }
 
-        searchInput.addEventListener("input", () => {
-            const inputValue = searchInput.value;
-            updateDropdown(inputValue);
+        searchInputFirst.addEventListener("input", () => {
+            const inputValue = searchInputFirst.value;
+            updateDropdown(inputValue, dropdownContentFirst, searchInputFirst);
+        });
+        searchInputSecond.addEventListener("input", () => {
+            const inputValue = searchInputSecond.value;
+            updateDropdown(inputValue, dropdownContentSecond, searchInputSecond);
         });
 
-        dropdownContent.addEventListener("click", (event) => {
+        dropdownContentFirst.addEventListener("click", (event) => {
         if (event.target.classList.contains("dropdown-option")) {
             const playerName = event.target.textContent;
-            updateFirstPlayer(playerName);
-            dropdownContent.style.display = "none";
+            updatePlayer('first-player',playerName);
+            dropdownContentFirst.style.display = "none";
         }
         });
 
+        dropdownContentSecond.addEventListener("click", (event) => {
+        if (event.target.classList.contains("dropdown-option")) {
+            const playerName = event.target.textContent;
+            updatePlayer('second-player',playerName);
+            dropdownContentSecond.style.display = "none";
+        }
+        });
     </script>
     </div>
 </body>

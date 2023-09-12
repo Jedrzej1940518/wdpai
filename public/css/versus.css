@@ -91,6 +91,22 @@
     display: flex;
     align-items: center;
 }
+.dropdown-container {
+    height: 10vh;
+    gap: 3.8em;
+    width: 24em;
+    display: flex;
+    align-items: center;
+}
+.dropdown-box {
+    width:10em;
+}
+#pro-search-first {
+    width: 9.8em;
+}
+#pro-search-second {
+    width: 9.8em;
+}
 
 @media only screen and (max-device-width: 600px) {
     .matches-container {

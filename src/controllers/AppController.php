@@ -1,6 +1,7 @@
 <?php
 
-class AppController {
+class AppController
+{
 
     private $request;
 
@@ -8,21 +9,21 @@ class AppController {
     {
         $this->request = $_SERVER['REQUEST_METHOD'];
     }
-    protected function isPost() : bool
+    protected function isPost(): bool
     {
         return $this->request === 'POST';
     }
-    protected function isGet() : bool
+    protected function isGet(): bool
     {
         return $this->request === 'GET';
     }
     protected function render(string $template = null, array $variables = [])
     {
-        $templatePath = 'public/views/'.$template.'.php';
-        
-        $output = $templatePath.' <- File not found';
+        $templatePath = 'public/views/' . $template . '.php';
 
-        if(file_exists($templatePath)){
+        $output = $templatePath . ' <- File not found';
+
+        if (file_exists($templatePath)) {
             extract($variables);
             ob_start();
             include $templatePath;

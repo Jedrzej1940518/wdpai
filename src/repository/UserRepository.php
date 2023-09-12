@@ -15,12 +15,12 @@ class UserRepository
     {
         $email = $user->getEmail();
         $password = $user->getPassword();
-        $pro_ids = $user->getProIds(); 
+        $pro_ids = $user->getProIds();
 
-        
+
         $query = "INSERT INTO app_user (email, password, pro_ids) VALUES (?, ?, ?)";
         $postgres_array = '{' . implode(',', $pro_ids) . '}';
-        $params = [$email, $password, $postgres_array]; 
+        $params = [$email, $password, $postgres_array];
 
         return $this->database->execute($query, $params);
     }
@@ -29,22 +29,22 @@ class UserRepository
     {
         $query = "SELECT * FROM app_user WHERE email = ?";
         $params = [$email];
-        
+
         return $this->database->querySingle($query, $params) !== false;
     }
 
-    public function findByEmail($email) : User
+    public function findByEmail($email): User
     {
-        
+
         $query = "SELECT * FROM app_user WHERE email = ?";
         $params = [$email];
-        
+
         return $this->createUserAppData($this->database->querySingle($query, $params));
     }
 
-    public function findById($id) : User
+    public function findById($id): User
     {
-        
+
         $query = "SELECT * FROM app_user WHERE id = ?";
         $params = [$id];
 
@@ -54,7 +54,7 @@ class UserRepository
     public function findAll()
     {
         $query = "SELECT * FROM app_user";
-        
+
         return $this->database->query($query);
     }
 
@@ -82,12 +82,12 @@ class UserRepository
         return $this->parseProIds($this->database->querySingle($query, $params)->pro_ids);
     }
 
-    public function createUserAppData($sdObject) : User
+    public function createUserAppData($sdObject): User
     {
         $array = $this->parseProIds($sdObject->pro_ids);
         return new User($sdObject->id, $sdObject->email, $sdObject->password, $array);
     }
-    private function parseProIds($pgArray) : array
+    private function parseProIds($pgArray): array
     {
         //remove braces and seperate numbers by ','
         $elements = explode(',', trim($pgArray, '{}'));
@@ -95,7 +95,7 @@ class UserRepository
         $parsedArray = [];
 
         foreach ($elements as $element) {
-            $parsedArray[] = (int)$element;
+            $parsedArray[] = (int) $element;
         }
 
         return $parsedArray;

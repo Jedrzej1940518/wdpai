@@ -2,18 +2,23 @@
 
 require_once 'AppController.php';
 
-class DefaultController extends AppController {
-    
-    public function index() {
+class DefaultController extends AppController
+{
+
+    public function index()
+    {
         $this->render('login');
     }
-    public function versus() {
+    public function versus()
+    {
         $this->render('versus');
     }
-    public function register() {
+    public function register()
+    {
         $this->render('register');
     }
-    public function trackedPros() {
+    public function trackedPros()
+    {
         $this->render('tracked-pros');
     }
 }

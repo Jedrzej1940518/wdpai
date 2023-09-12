@@ -55,7 +55,8 @@ class User implements JsonSerializable
         $this->proIds = $proIds;
     }
 
-    public function jsonSerialize() {
+    public function jsonSerialize()
+    {
         return [
             'id' => $this->id,
             'email' => $this->email,

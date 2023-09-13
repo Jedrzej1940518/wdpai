@@ -17,9 +17,22 @@ class Routing
     {
         self::$routes[$url] = $controller;
     }
+    public static function runApi($url)
+    {
+        $action = explode("/", $url)[1];
+        $params = explode("/", $url)[2];
+        $api_controller = new ApiController();
+
+        $api_controller->$action($params);
+    }
     public static function run($url)
     {
-
+        $base = explode("/", $url)[0];
+        if ($base == 'api')
+        {
+            return Routing::runApi($url);
+        }
+ 
         if (!array_key_exists($url, self::$routes)) {
 
             foreach (self::$routes as $key => $value) {
@@ -30,15 +43,7 @@ class Routing
 
         $controller = self::$routes[$url];
         $object = new $controller;
-        $url = $url ?: 'index';
 
-        $base = explode("/", $url)[0];
-
-        if ($base == 'api') {
-            $action = explode("/", $url)[1];
-        } else {
-            $action = $url;
-        }
-        $object->$action();
+        $object->$url();
     }
 }

@@ -189,6 +189,118 @@
             
             document.cookie = "user_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         }
+        function populateMatch(firstMatch, secondMatch)
+        {
+            const matchContainer = document.createElement('div');
+            matchContainer.classList.add('match-container');
+
+            
+            const timerContainer = document.createElement('div');
+            timerContainer.classList.add('timer-container');
+            const timerText1 = document.createElement('div');
+            timerText1.classList.add('versus-text');
+            timerText1.textContent = '20:15';
+            const timerText2 = document.createElement('div');
+            timerText2.classList.add('versus-text');
+            timerText2.textContent = '06.10.2023';
+            timerContainer.appendChild(timerText1);
+            timerContainer.appendChild(timerText2);
+
+            
+            const leftStatsContainer = document.createElement('div');
+            leftStatsContainer.classList.add('left-stats-container');
+
+            
+            const leftImage = document.createElement('img');
+            leftImage.src = 'public/img/champions/' + firstMatch.champion.toLowerCase() + '.png';
+
+            
+            const leftAccountContainer = document.createElement('div');
+            leftAccountContainer.classList.add('account-container');
+            const accountText1 = document.createElement('div');
+            accountText1.classList.add('versus-text');
+            accountText1.textContent = firstMatch.; 
+            const accountText2 = document.createElement('div');
+            accountText2.classList.add('versus-text');
+            accountText2.textContent = match.account_id; 
+            leftAccountContainer.appendChild(accountText1);
+            leftAccountContainer.appendChild(accountText2);
+
+            
+            const leftStats = document.createElement('div');
+            leftStats.classList.add('stats-container');
+            const statsText1 = document.createElement('div');
+            statsText1.classList.add('versus-text');
+            statsText1.textContent = match.kills + '/' + match.deaths + '/' + match.assists;
+            const statsText2 = document.createElement('div');
+            statsText2.classList.add('versus-text');
+            statsText2.textContent = match.rank;
+            leftStats.appendChild(statsText1);
+            leftStats.appendChild(statsText2);
+
+            
+            leftStatsContainer.appendChild(leftImage);
+            leftStatsContainer.appendChild(leftAccountContainer);
+            leftStatsContainer.appendChild(leftStats);
+
+            
+            const rightStatsContainer = document.createElement('div');
+            rightStatsContainer.classList.add('right-stats-container');
+
+            
+            const rightStats = document.createElement('div');
+            rightStats.classList.add('stats-container');
+            const rightStatsText1 = document.createElement('div');
+            rightStatsText1.classList.add('versus-text');
+            rightStatsText1.textContent = '2/5/15'; 
+            const rightStatsText2 = document.createElement('div');
+            rightStatsText2.classList.add('versus-text');
+            rightStatsText2.textContent = 'B-'; 
+            rightStats.appendChild(rightStatsText1);
+            rightStats.appendChild(rightStatsText2);
+
+            
+            const rightAccountContainer = document.createElement('div');
+            rightAccountContainer.classList.add('account-container');
+            const rightAccountText1 = document.createElement('div');
+            rightAccountText1.classList.add('versus-text');
+            rightAccountText1.textContent = 'pro_id'; 
+            const rightAccountText2 = document.createElement('div');
+            rightAccountText2.classList.add('versus-text');
+            rightAccountText2.textContent = match.account_id; 
+            rightAccountContainer.appendChild(rightAccountText1);
+            rightAccountContainer.appendChild(rightAccountText2);
+
+            
+            const rightImage = document.createElement('img');
+            rightImage.src = 'public/img/champions/teemo.png';
+
+            
+            rightStatsContainer.appendChild(rightStats);
+            rightStatsContainer.appendChild(rightAccountContainer);
+            rightStatsContainer.appendChild(rightImage);
+
+            
+            matchContainer.appendChild(timerContainer);
+            matchContainer.appendChild(leftStatsContainer);
+            matchContainer.appendChild(rightStatsContainer);
+
+            
+            matchesContainer.appendChild(matchContainer);
+        }
+        function createMatchElements(matchData) {
+            const matchesContainer = document.querySelector('.matches-container');
+
+            matchesContainer.innerHTML = '';
+
+            matchData.forEach(match => {
+                const matchContainer = document.createElement('div');
+                matchContainer.classList.add('match-container');
+                matchesContainer.appendChild(matchContainer);
+            });
+        }
+
+
 
         function updatePlayer(playerTag, playerName) {
             const playerElement = document.getElementById(playerTag);
@@ -199,9 +311,8 @@
             .then(response => response.json())
             .then(data => {
                 const imgExists = data.pros[playerName].img_exists;
-                console.log(imgExists);
-            
-            // Update the image source if it exists
+                
+                
                 if (imgExists) {
                     const newFile = "public/img/players/" + playerName.toLowerCase() + ".webp";
                     imgElement.src = newFile;
@@ -210,7 +321,15 @@
                 {
                     imgElement.src = "public/img/players/unknown_pro.webp";
                 }
+                const proId = data.pros[playerName].id;
+                return fetch('http://localhost:8080/api/matches/'+proId);
                 })
+                .then(response=>response.json())
+                .then(data=> {
+                    createMatchElements(data);
+                    console.log(data);
+                }
+                )
             .catch(error => {
                 console.error('Error fetching data:', error);
             });

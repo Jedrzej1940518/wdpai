@@ -23,7 +23,21 @@ class ProRepository
     public function listAllPros()
     {
         $query = "SELECT * FROM pro";
-        return $this->database->query($query, $params, 'Pro');
+        return $this->database->query($query);
+    }
+    public function getProAccounts($pro_id)
+    {
+        $query = "SELECT * FROM account WHERE pro_id = ?";
+        $params = [$pro_id];
+
+        $accounts_data = $this->database->queryParams($query, $params);
+        $accounts = [];
+        $i=0;
+        foreach($accounts_data as $account_data){
+            $accounts[$i] = $this->createAccount($account_data);
+            $i++;
+        }
+        return $accounts;
     }
 
     public function findProById($id): Pro
@@ -31,7 +45,7 @@ class ProRepository
         $query = "SELECT * FROM pro WHERE id = ?";
         $params = [$id];
 
-        return $this->createPro($this->database->querySingle($query, $params, 'Pro'));
+        return $this->createPro($this->database->querySingle($query, $params));
     }
 
     public function findProByName($name): Pro
@@ -39,7 +53,7 @@ class ProRepository
         $query = "SELECT * FROM pro WHERE name = ?";
         $params = [$name];
 
-        return $this->createPro($this->database->querySingle($query, $params, 'Pro'));
+        return $this->createPro($this->database->querySingle($query, $params));
     }
 
     public function addAccount($proId, $summonerName, $server, $lp)
@@ -50,13 +64,6 @@ class ProRepository
         return $this->database->execute($query, $params);
     }
 
-    public function findAccountById($id): Account
-    {
-        $query = "SELECT * FROM account WHERE id = ?";
-        $params = [$id];
-
-        return createAccount($this->database->querySingle($query, $params, 'Account'));
-    }
     public function getDefaultPros(): array
     {
         $pro_names = ["Caps", "Faker", "Baus"];
@@ -68,13 +75,13 @@ class ProRepository
         return $pros;
 
     }
-    private function createPro($dbObject): Pro
+    private function createPro($db_object): Pro
     {
-        return new Pro($dbObject->id, $dbObject->name, $dbObject->img_exists);
+        return new Pro($db_object->id, $db_object->name, $db_object->img_exists);
     }
 
-    private function createAccount($dbObject): Account
+    private function createAccount($db_object): Account
     {
-        return new Account($dbObject->id, $dbObject->pro_id, $dbObject->summoner_name, $dbObject->server, $dbObject->lp);
+        return new Account($db_object['id'], $db_object['pro_id'], $db_object['summoner_name'], $db_object['server'], $db_object['lp']);
     }
 }

@@ -15,5 +15,6 @@ Routing::post('register', 'SecurityController');
 
 //api
 Routing::get('api/pros', 'ApiController');
+Routing::get('api/matches', 'ApiController');
 
 Routing::run($path);

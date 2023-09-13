@@ -82,10 +82,10 @@ class UserRepository
         return $this->parseProIds($this->database->querySingle($query, $params)->pro_ids);
     }
 
-    public function createUserAppData($sdObject): User
+    public function createUserAppData($db_object): User
     {
-        $array = $this->parseProIds($sdObject->pro_ids);
-        return new User($sdObject->id, $sdObject->email, $sdObject->password, $array);
+        $array = $this->parseProIds($db_object->pro_ids);
+        return new User($db_object->id, $db_object->email, $db_object->password, $array);
     }
     private function parseProIds($pgArray): array
     {

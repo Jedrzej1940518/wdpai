@@ -42,6 +42,16 @@ class Database
             die("Database query error: " . $e->getMessage());
         }
     }
+    public function queryParams($query, $params)
+    {
+        try {
+            $stmt = $this->connection->prepare($query);
+            $stmt->execute($params);
+            return $stmt->fetchAll();
+        } catch (PDOException $e) {
+            die("Database query error: " . $e->getMessage());
+        }
+    }
 
     public function querySingle($query, $params)
     {

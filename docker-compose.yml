@@ -24,7 +24,7 @@ services:
 
     db:
         build:
-            context: ./   # Adjust the context to include the parent directory
+            context: ./
             dockerfile: ./docker/db/Dockerfile
         environment:
             POSTGRES_USER: ${POSTGRES_USER}

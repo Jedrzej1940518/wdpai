@@ -1,0 +1,43 @@
+
+
+Versus is a web application that allows users to track their favorite pro players when they play against each other.
+
+Versus uses Docker so setting it up should be relatively easy.
+
+Versus uses Postgres database. init.sql file should automatically fill the database with dummy values.
+User should register an account by himself.
+
+Currently there are 4 tables:
+User, Pro, Account, Matches
+For the exact relations between them, user should get familiar with init.sql file which initializes the database.
+
+Versus uses cookies to handle sessions.
+
+Versus is written using Object Oriented Programing.
+Below are the the most common types of objects:
+
+Versus uses 'controllers' for each route. Meaning that for each new functionality/view/route,
+a new Controller class should be added to the project.
+
+Versus uses 'models' to represent a row in a given database table.
+All models are JsonSerializable for the ease of debugging.
+
+Versus uses 'repositories' as wrappers for a given database table,
+simplifying typical operations like inserting into a table.
+
+Versus uses Database.php file as a wrapper for a PDO connection.
+
+Typical application use goes like this:
+docker-compose build && docker-compose up
+
+User connects to the server (http://localhost:8080/**/) which enters index.php
+index.php matches controller for every available URL using a singleton Routing class.
+Routing them parses and processes the URL, handling the specific request for the specific URL.
+
+Some javascript is involved in dynamically loading up the tracked pro players.
+
+Versus has a simple API for get requests:
+
+http://localhost:8080/api/pros - returns the list of pro players that a user (identified by cookie) tracks,
+
+http://localhost:8080/api/matches/{pro_id} - returns the list of matches played recently by pro player - TODO

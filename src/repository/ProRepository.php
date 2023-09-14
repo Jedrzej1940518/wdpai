@@ -16,6 +16,7 @@ class ProRepository
     public function addPro($name, $img_exists)
     {
         $query = "INSERT INTO pro (name, img_exists) VALUES (?, ?)";
+        $img_exists = 'false';
         $params = [$name, $img_exists];
 
         return $this->database->execute($query, $params);

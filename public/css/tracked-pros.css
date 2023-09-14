@@ -1,43 +1,85 @@
-.main-screen{
+.main-screen {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
 }
 
-.pros-container
-{
+.pros-container {
     margin-top: 2em;
     margin-right: 10em;
 }
-.player
-{
+
+.player {
     width: 20em;
     justify-content: left;
 }
-.player .versus-text
-{
+
+.player .versus-text {
     margin-left: 2em;
 }
-.player .player-img
-{
+
+.player .player-img {
     margin-left: 7em;
     margin-right: 1em;
 }
-.add-pro
-{
+
+.add-pro {
     display: flex;
     flex-direction: column;
     align-items: start;
     justify-content: left;
     margin-top: 2em;
 }
-.search-pro
-{
+
+.search-pro {
     margin-bottom: 0.2em;
     width: 8.5em;
 }
-.add-pro-button
-{
+
+.add-pro-button {
     margin-bottom: 0.5em;
     width: 8.5em;
+}
+#add-pro-form label,
+#add-pro-form input[type="text"],
+#add-pro-form input[type="submit"] {
+    display: block;
+    margin-bottom: 10px;
+    width: 8em;
+}
+
+
+@media only screen and (max-device-width: 600px) {
+    .main-screen{
+        justify-content: left;
+    }
+    .pros-container {
+        margin-left: 1em;
+        margin-right: 1em;
+        width: 4em;
+    }
+    .add-pro-container
+    {
+        justify-content: center;
+        margin-left: 50%;
+    }
+    .main-screen
+    {
+        flex-direction: column-reverse;
+    }
+
+    .search-pro {
+        width: 4em;
+    }
+    .input-form{
+        width: 8em;
+    }
+
+    .add-pro-button {
+        width: 4em;
+    }
+    .add-pro {
+        width: 4em;
+    }
+
 }

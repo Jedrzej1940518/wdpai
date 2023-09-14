@@ -34,16 +34,16 @@ class Routing
         }
  
         if (!array_key_exists($url, self::$routes)) {
-
-            foreach (self::$routes as $key => $value) {
-                echo $key . ": " . $value . "<br>";
-            }
             die("{$url} Wrong url!");
         }
 
         $controller = self::$routes[$url];
         $object = new $controller;
 
+        if($url=='')
+        {
+            $url = 'index';
+        }
         $object->$url();
     }
 }

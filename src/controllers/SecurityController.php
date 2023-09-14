@@ -18,6 +18,10 @@ class SecurityController extends AppController
         $email = $_POST["email"];
 
         $user_repository = new UserRepository();
+        if(!$this->isEmailUsed($email, $user_repository))
+        {
+            return $this->render('login', ['messages' => ['Wrong email!']]);
+        }
         $user = $user_repository->findByEmail($email);
         $password = md5($_POST["password"]);
 
